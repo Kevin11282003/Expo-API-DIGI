@@ -11,6 +11,7 @@ const MAX_ATTEMPTS = 5;
 export default function JuegoPokemon() {
   const [pokemonName, setPokemonName] = useState('');
   const [pokemonImage, setPokemonImage] = useState('');
+  const [pokemonId, setPokemonId] = useState('');
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -86,6 +87,7 @@ export default function JuegoPokemon() {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const data = await response.json();
         setPokemonName(data.name.toUpperCase());
+        setPokemonId(data.id);
         setPokemonImage(
           `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
         );
@@ -138,6 +140,7 @@ export default function JuegoPokemon() {
     setGameWon(false);
     setLoading(true);
     setPokemonName('');
+    setPokemonId('');
     setPokemonImage('');
     // vuelve a buscar un Pokémon nuevo
     const id = Math.floor(Math.random() * 1025) + 1;
@@ -145,6 +148,7 @@ export default function JuegoPokemon() {
       .then((res) => res.json())
       .then((data) => {
         setPokemonName(data.name.toUpperCase());
+        setPokemonId(data.id);
         setPokemonImage(
           `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
         );
@@ -160,6 +164,7 @@ export default function JuegoPokemon() {
         <ActivityIndicator size="large" />
       ) : (
         <>
+          <Text>{pokemonId}</Text>
           <Image source={{ uri: pokemonImage }} style={styles.image} />
           <View style={styles.wordContainer}>{renderWord()}</View>
 
