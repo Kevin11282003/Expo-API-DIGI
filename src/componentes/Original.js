@@ -5,7 +5,7 @@ import { db, auth } from '../../firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ-:.\' '.split('');
 const MAX_ATTEMPTS = 5;
 
 export default function JuegoPokemon() {
