@@ -13,6 +13,9 @@ export default function Registro() {
   const [telefono, setTelefono] = useState('');
   const navigation = useNavigation();
 
+  let ganados = 0;
+  let perdidos = 0;
+
   const handleRegistro = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, correo, contrasena);
@@ -24,7 +27,9 @@ export default function Registro() {
         nombre,
         correo,
         fecha,
-        telefono
+        telefono,
+        ganados,
+        perdidos
       });
 
       Alert.alert('Éxito', 'Usuario registrado correctamente');
