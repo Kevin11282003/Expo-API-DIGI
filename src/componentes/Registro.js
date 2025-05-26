@@ -58,7 +58,27 @@ export default function Registro() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  titulo: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 12, marginBottom: 12, borderRadius: 6 }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#121212',
+  },
+  titulo: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#ffcc00',
+    fontWeight: 'bold',
+  },
+  input: {
+    backgroundColor: '#9c9c9c',
+    borderWidth: 1,
+    borderColor: '#444',
+    padding: 12,
+    marginBottom: 12,
+    borderRadius: 6,
+    color: '#fff',
+  },
 });
+

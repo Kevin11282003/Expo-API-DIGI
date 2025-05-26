@@ -81,24 +81,30 @@ export default function Perfil() {
 
 const styles = StyleSheet.create({
   contenedor: {
-    padding: 20,
     flex: 1,
-    backgroundColor: '#fff'
+    padding: 20,
+    backgroundColor: '#121212',
   },
   titulo: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#ffcc00',
     marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
+    backgroundColor: '#1f1f1f',
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
+    borderColor: '#444',
+    padding: 12,
     marginBottom: 15,
     borderRadius: 10,
+    color: '#fff',
   },
   cargando: {
     marginTop: 50,
     textAlign: 'center',
+    color: '#ccc',
+    fontSize: 16,
   },
 });

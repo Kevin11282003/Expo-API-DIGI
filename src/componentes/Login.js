@@ -52,17 +52,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#121212', // fondo oscuro
   },
   titulo: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center'
+    fontSize: 26,
+    marginBottom: 24,
+    textAlign: 'center',
+    color: '#ffcc00', // dorado llamativo
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#444', // borde tenue
     padding: 12,
     marginBottom: 12,
     borderRadius: 6,
+    backgroundColor: '#9c9c9c', // fondo input oscuro
+    color: '#fff', // texto blanco
   },
 });
+

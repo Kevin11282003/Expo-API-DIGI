@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { onAuthStateChanged } from 'firebase/auth';
@@ -15,15 +14,25 @@ import Original from './src/componentes/Original';
 import Perfil from './src/componentes/Perfil';
 import Logout from './src/componentes/Logout';
 
-
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
+// Tema personalizado oscuro para toda la navegación
+const MyDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: '#121212',     // Fondo principal oscuro
+    primary: '#ffcc00',        // Color principal amarillo
+    card: '#121212',           // Fondo de tab bar oscuro
+    text: '#fff',              // Texto blanco
+    border: '#222',            // Borde oscuro para tab bar
+    notification: '#ffcc00',   // Color de notificaciones si se usa
+  },
+};
 
 export default function App() {
   const [usuario, setUsuario] = useState(null);
   const [cargando, setCargando] = useState(true);
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -35,15 +44,26 @@ export default function App() {
 
   if (cargando) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#ffcc00" />
       </View>
     );
   }
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <NavigationContainer theme={MyDarkTheme}>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#ffcc00',
+          tabBarInactiveTintColor: '#aaa',
+          tabBarStyle: {
+            backgroundColor: '#121212',
+            borderTopColor: '#222',
+          },
+          tabBarBackground: () => <View style={{ flex: 1, backgroundColor: '#121212' }} />,
+        }}
+      >
         {usuario ? (
           <>
             <Tab.Screen name="Home" component={Home} />
@@ -61,3 +81,12 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#121212', // Fondo oscuro durante la carga
+  },
+});
